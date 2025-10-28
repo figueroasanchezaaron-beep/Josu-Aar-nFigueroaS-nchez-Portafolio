@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+  background-color: #333;
+  color: white;
+}
+ul {
+  background-color: #555;
+  list-style: none;
+  padding: 20px;
+  border-radius: 10px;
+}
+li a {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+  width: 150px;
+  text-align: center;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 3px;
+}
+.regresa {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: #555;
+  font-size: 3.2em;
+  font-weight: bold;
+  border: 2px solid #555;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.contactos {
+  width: 500px;
+  background-color: #555;
+  padding: 20px;
+  border-radius: 10px;
+}
+.contacto {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  position: relative;
+  border-radius: 5px;
+}
+.contacto .foto {
+  width: 80px;
+  margin: 10px;
+  padding: 5px;
+}
+.contacto .foto img {
+  width: 100%;
+  margin-left: 80px;
+  border-radius: 5px;
+}
+.info {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  color: white;
+  width: 350px;
+}
+.clima {
+  width: 600px;
+  background-color: #555;
+  padding: 20px;
+  border-radius: 10px;
+}
+.resultado {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin-top: 20px;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 1px black;
+}
+.resultado .izquierda {
+  width: 40%;
+  position: relative;
+  height: 100%;
+}
+.resultado .derecha {
+  width: 60%;
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+.izquierda .titulo {
+  font-size: 1.2em;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+.izquierda .actual {
+  margin-top: 5px;
+  font-size: 1.2em;
+}
+.izquierda .temperaturas {
+  position: absolute;
+  right: 25px;
+  top: 50px;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+.izquierda .sensacion {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+}
+.izquierda .condicion {
+  position: absolute;
+  bottom: 0px;
+}
+.derecha .pais_ciudad,
+.derecha .pais_estado,
+.derecha .pais,
+.derecha .zona_horaria {
+  border-bottom: 2px solid #555;
+  margin-left: 5px;
+  margin-right: 20px;
+  padding: 10px 0;
+}
+.buscar {
+  display: flex;
+  justify-content: center;
+}
+.buscar input {
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: #333;
+  color: white;
+  box-shadow: 2px 2px 2px 1px black;
+  border: none;
+}
+.buscar button {
+  padding: 5px 10px;
+  background-color: #333;
+  color: white;
+  box-shadow: 2px 2px 2px 1px black;
+  border: none;
+}
+.resultado .error {
+  font-size: 2.5em;
+  color: orangered;
+}
