@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>662</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#centralwidget{
+background-color: rgb(255, 255, 255);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivos</string>
+    </property>
+    <addaction name="btnRegTransf"/>
+    <addaction name="btn_dep"/>
+    <addaction name="btn_His_Trans_Inter"/>
+   </widget>
+   <widget class="QMenu" name="menuCreditos">
+    <property name="title">
+     <string>Créditos</string>
+    </property>
+    <addaction name="btn_Desarrolladores"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuCreditos"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="btnRegTransf">
+   <property name="text">
+    <string>Registrar Transferencias</string>
+   </property>
+  </action>
+  <action name="btn_dep">
+   <property name="text">
+    <string>Reportar Transferencias Internacionales</string>
+   </property>
+  </action>
+  <action name="btn_His_Trans_Inter">
+   <property name="text">
+    <string>Historial de Transferencias Internacionales</string>
+   </property>
+  </action>
+  <action name="btn_Desarrolladores">
+   <property name="text">
+    <string>Desarrolladores</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
