@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<h2>Clientes</h2>
+
+<a href="/clientes/crear/" class="btn btn-primary mb-3">Nuevo Cliente</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <!-- CAMPO DE BUSQUEDA GENERAL -->
+    <div class="col-md-3">
+        <input type="text" name="q" class="form-control"
+               placeholder="Buscar..."
+               value="{{ request.GET.q }}">
+    </div>
+
+    <!-- FILTROS ESPECÍFICOS (CAMBIA ESTO POR CADA MÓDULO) -->
+    {% block filtros %}
+<div class="col-md-3">
+    <input type="text" name="ciudad" class="form-control"
+           placeholder="Ciudad" value="{{ request.GET.ciudad }}">
+</div>
+{% endblock %}
+
+
+    <!-- BOTÓN FILTRAR -->
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
+    <!-- BOTÓN LIMPIAR -->
+    <div class="col-md-3">
+        <a href="{{ request.path }}" class="btn btn-secondary w-100">Limpiar</a>
+    </div>
+
+</form>
+
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Ciudad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in clientes %}
+        <tr>
+            <td>{{ c.id_cliente }}</td>
+            <td>{{ c.nombre }}</td>
+            <td>{{ c.direccion }}</td>
+            <td>{{ c.telefono }}</td>
+            <td>{{ c.correo }}</td>
+            <td>{{ c.ciudad }}</td>
+
+            <td>
+                <a href="/clientes/detalle/{{ c.id_cliente }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/clientes/editar/{{ c.id_cliente }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/clientes/eliminar/{{ c.id_cliente }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
+    

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Editar Venta{% endblock %}
+
+{% block content %}
+<h2>Editar Venta</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Cliente</label>
+    <select name="id_cliente" class="form-control" required>
+        {% for c in clientes %}
+        <option value="{{ c.id_cliente }}" {% if c.id_cliente == venta.id_cliente %}selected{% endif %}>
+            {{ c.nombre }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Empleado Responsable</label>
+    <select name="id_empleado" class="form-control" required>
+        {% for e in empleados %}
+        <option value="{{ e.id_empleado }}" {% if e.id_empleado == venta.id_empleado %}selected{% endif %}>
+            {{ e.nombre }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Fecha de venta</label>
+    <input type="date" name="fecha_venta" class="form-control" value="{{ venta.fecha_venta }}" required>
+
+    <label>Total</label>
+    <input type="number" name="total" step="0.01" class="form-control" value="{{ venta.total }}" required>
+
+    <button class="btn btn-primary mt-3">Actualizar</button>
+</form>
+
+{% endblock %}

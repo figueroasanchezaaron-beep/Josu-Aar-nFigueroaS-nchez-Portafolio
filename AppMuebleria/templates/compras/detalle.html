@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Detalle de la Compra{% endblock %}
+
+{% block content %}
+<h2>Detalle de la Compra</h2>
+
+<div class="card p-3">
+
+    <p><strong>ID Compra:</strong> {{ compra.id_compra }}</p>
+    <p><strong>Proveedor:</strong> {{ compra.proveedor.nombre_empresa }}</p>
+    <p><strong>Fecha:</strong> {{ compra.fecha_compra }}</p>
+    <p><strong>Total:</strong> ${{ compra.total }}</p>
+
+</div>
+
+<h3 class="mt-4">Productos Adquiridos</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Costo Unitario</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for d in detalles %}
+        <tr>
+            <td>{{ d.producto.nombre_producto }}</td>
+            <td>{{ d.cantidad }}</td>
+            <td>${{ d.costo_unitario }}</td>
+            <td>${{ d.subtotal }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/compras/" class="btn btn-secondary mt-3">Regresar</a>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Ventas{% endblock %}
+
+{% block content %}
+<h2>Ventas</h2>
+
+<a href="/ventas/crear/" class="btn btn-primary mb-3">Nueva Venta</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <!-- CAMPO DE BUSQUEDA GENERAL -->
+    <div class="col-md-3">
+        <input type="text" name="q" class="form-control"
+               placeholder="Buscar..."
+               value="{{ request.GET.q }}">
+    </div>
+
+    <!-- FILTROS ESPECÍFICOS (CAMBIA ESTO POR CADA MÓDULO) -->
+    {% block filtros %}
+<div class="col-md-3">
+    <input type="date" name="desde" class="form-control"
+           value="{{ request.GET.desde }}">
+</div>
+
+<div class="col-md-3">
+    <input type="date" name="hasta" class="form-control"
+           value="{{ request.GET.hasta }}">
+</div>
+{% endblock %}
+
+
+    <!-- BOTÓN FILTRAR -->
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
+    <!-- BOTÓN LIMPIAR -->
+    <div class="col-md-3">
+        <a href="{{ request.path }}" class="btn btn-secondary w-100">Limpiar</a>
+    </div>
+
+</form>
+
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Empleado</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for v in ventas %}
+        <tr>
+            <td>{{ v.id_venta }}</td>
+            <td>{{ v.cliente.nombre }}</td>
+            <td>{{ v.empleado.nombre }}</td>
+            <td>{{ v.fecha_venta }}</td>
+            <td>${{ v.total }}</td>
+
+            <td>
+                <a href="/ventas/detalle/{{ v.id_venta }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/ventas/editar/{{ v.id_venta }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/ventas/eliminar/{{ v.id_venta }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

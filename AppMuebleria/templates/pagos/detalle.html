@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Detalle del Pago{% endblock %}
+
+{% block content %}
+<h2>Detalle del Pago</h2>
+
+<div class="card p-3">
+
+    <p><strong>ID Pago:</strong> {{ pago.id_pago }}</p>
+    <p><strong>Venta:</strong> #{{ pago.venta.id_venta }} — Cliente: {{ pago.venta.cliente.nombre }}</p>
+    <p><strong>Fecha del Pago:</strong> {{ pago.fecha_pago }}</p>
+    <p><strong>Monto:</strong> ${{ pago.monto }}</p>
+    <p><strong>Método:</strong> {{ pago.metodo_pago }}</p>
+
+</div>
+
+<a href="/pagos/" class="btn btn-secondary mt-3">Regresar</a>
+
+{% endblock %}

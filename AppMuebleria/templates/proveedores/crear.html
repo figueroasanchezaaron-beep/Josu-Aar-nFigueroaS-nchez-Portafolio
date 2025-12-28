@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Proveedor{% endblock %}
+
+{% block content %}
+<h2>Registrar Proveedor</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Nombre de la empresa</label>
+    <input type="text" name="nombre_empresa" class="form-control" required>
+
+    <label>Nombre del contacto</label>
+    <input type="text" name="contacto" class="form-control">
+
+    <label>Teléfono</label>
+    <input type="text" name="telefono" class="form-control">
+
+    <label>Correo</label>
+    <input type="email" name="correo" class="form-control">
+
+    <label>Dirección</label>
+    <input type="text" name="direccion" class="form-control">
+
+    <label>Ciudad</label>
+    <input type="text" name="ciudad" class="form-control">
+
+    <button class="btn btn-success mt-3">Guardar</button>
+</form>
+
+{% endblock %}

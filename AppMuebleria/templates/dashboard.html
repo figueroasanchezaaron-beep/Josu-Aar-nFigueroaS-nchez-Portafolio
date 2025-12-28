@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-center">Panel de Control – Mueblería FISA</h2>
+
+    <!-- TARJETAS DE RESUMEN -->
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-left-primary">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Productos</h5>
+                    <h3 class="text-primary">{{ total_productos }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-left-success">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Clientes</h5>
+                    <h3 class="text-success">{{ total_clientes }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-left-warning">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Proveedores</h5>
+                    <h3 class="text-warning">{{ total_proveedores }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-left-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Empleados</h5>
+                    <h3 class="text-info">{{ total_empleados }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VENTAS -->
+    <div class="row mt-4 g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>Total de Ventas Registradas</h5>
+                    <h3 class="text-primary">{{ total_ventas }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5>Ingresos Acumulados</h5>
+                    <h3 class="text-success">$ {{ venta_acumulada }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACCESOS RÁPIDOS -->
+    <h4 class="mt-5">Accesos Rápidos</h4>
+    <div class="row g-3">
+
+        <div class="col-md-3">
+            <a href="/productos/" class="btn btn-primary w-100">Gestionar Productos</a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="/ventas/" class="btn btn-success w-100">Registrar Ventas</a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="/compras/" class="btn btn-warning w-100">Registrar Compras</a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="/clientes/" class="btn btn-info w-100">Clientes</a>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+.card {
+    border-radius: 12px;
+}
+.border-left-primary { border-left: 5px solid #800040; }
+.border-left-success { border-left: 5px solid #800040; }
+.border-left-warning { border-left: 5px solid #800040; }
+.border-left-info { border-left: 5px solid #800040; }
+</style>
+
+{% endblock %}

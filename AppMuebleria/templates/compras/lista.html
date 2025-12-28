@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Compras{% endblock %}
+
+{% block content %}
+<h2>Compras</h2>
+
+<a href="/compras/crear/" class="btn btn-primary mb-3">Nueva Compra</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <!-- CAMPO DE BUSQUEDA GENERAL -->
+    <div class="col-md-3">
+        <input type="text" name="q" class="form-control"
+               placeholder="Buscar..."
+               value="{{ request.GET.q }}">
+    </div>
+
+    <!-- FILTROS ESPECÍFICOS (CAMBIA ESTO POR CADA MÓDULO) -->
+    {% block filtros %}
+<div class="col-md-3">
+    <select name="proveedor" class="form-select">
+        <option value="">Proveedor</option>
+        {% for p in proveedores %}
+        <option value="{{ p.id_proveedor }}"
+            {% if request.GET.proveedor == p.id_proveedor|stringformat:"s" %}selected{% endif %}>
+            {{ p.nombre_empresa }}
+        </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="col-md-3">
+    <input type="date" name="fecha" class="form-control"
+           value="{{ request.GET.fecha }}">
+</div>
+{% endblock %}
+
+
+    <!-- BOTÓN FILTRAR -->
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
+    <!-- BOTÓN LIMPIAR -->
+    <div class="col-md-3">
+        <a href="{{ request.path }}" class="btn btn-secondary w-100">Limpiar</a>
+    </div>
+
+</form>
+
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Proveedor</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in compras %}
+        <tr>
+            <td>{{ c.id_compra }}</td>
+            <td>{{ c.proveedor.nombre_empresa }}</td>
+            <td>{{ c.fecha_compra }}</td>
+            <td>${{ c.total }}</td>
+
+            <td>
+                <a href="/compras/detalle/{{ c.id_compra }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/compras/editar/{{ c.id_compra }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/compras/eliminar/{{ c.id_compra }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

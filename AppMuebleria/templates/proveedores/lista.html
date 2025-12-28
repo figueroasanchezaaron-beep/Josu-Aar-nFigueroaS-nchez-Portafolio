@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+<h2>Proveedores</h2>
+
+<a href="/proveedores/crear/" class="btn btn-primary mb-3">Nuevo Proveedor</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <!-- CAMPO DE BUSQUEDA GENERAL -->
+    <div class="col-md-3">
+        <input type="text" name="q" class="form-control"
+               placeholder="Buscar..."
+               value="{{ request.GET.q }}">
+    </div>
+
+    <!-- FILTROS ESPECÍFICOS (CAMBIA ESTO POR CADA MÓDULO) -->
+    {% block filtros %}
+<div class="col-md-3">
+    <input type="text" name="ciudad" class="form-control"
+           placeholder="Ciudad" value="{{ request.GET.ciudad }}">
+</div>
+{% endblock %}
+
+    <!-- BOTÓN FILTRAR -->
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
+    <!-- BOTÓN LIMPIAR -->
+    <div class="col-md-3">
+        <a href="{{ request.path }}" class="btn btn-secondary w-100">Limpiar</a>
+    </div>
+
+</form>
+
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for p in proveedores %}
+        <tr>
+            <td>{{ p.id_proveedor }}</td>
+            <td>{{ p.nombre_empresa }}</td>
+            <td>{{ p.contacto }}</td>
+            <td>{{ p.telefono }}</td>
+            <td>{{ p.correo }}</td>
+            <td>{{ p.direccion }}</td>
+            <td>{{ p.ciudad }}</td>
+
+            <td>
+                <a href="/proveedores/detalle/{{ p.id_proveedor }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/proveedores/editar/{{ p.id_proveedor }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/proveedores/eliminar/{{ p.id_proveedor }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

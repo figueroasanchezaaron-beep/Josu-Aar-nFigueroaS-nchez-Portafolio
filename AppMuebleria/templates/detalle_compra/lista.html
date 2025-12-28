@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle de Compra{% endblock %}
+
+{% block content %}
+<h2>Detalle de Compra – Compra #{{ compra.id_compra }}</h2>
+
+<a href="/detalle_compra/agregar/{{ compra.id_compra }}/" class="btn btn-primary mb-3">
+    Agregar Producto
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID Detalle</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Costo Unitario</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for d in detalles %}
+        <tr>
+            <td>{{ d.id_detalle_compra }}</td>
+            <td>{{ d.producto.nombre_producto }}</td>
+            <td>{{ d.cantidad }}</td>
+            <td>${{ d.costo_unitario }}</td>
+            <td>${{ d.subtotal }}</td>
+
+            <td>
+                <a href="/detalle_compra/editar/{{ d.id_detalle_compra }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/detalle_compra/eliminar/{{ d.id_detalle_compra }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/compras/detalle/{{ compra.id_compra }}/" class="btn btn-secondary mt-3">Regresar a la Compra</a>
+
+{% endblock %}

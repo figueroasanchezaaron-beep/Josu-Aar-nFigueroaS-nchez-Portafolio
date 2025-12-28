@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Agregar Producto a Venta{% endblock %}
+
+{% block content %}
+<h2>Agregar Producto a la Venta #{{ venta.id_venta }}</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Producto</label>
+    <select name="id_producto" class="form-control" required>
+        <option value="">Seleccione un producto</option>
+        {% for p in productos %}
+        <option value="{{ p.id_producto }}">{{ p.nombre_producto }} — ${{ p.precio }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Cantidad</label>
+    <input type="number" name="cantidad" class="form-control" required>
+
+    <label>Precio unitario</label>
+    <input type="number" step="0.01" name="precio_unitario" class="form-control" required>
+
+    <button class="btn btn-success mt-3">Agregar</button>
+</form>
+
+<a href="/detalle_venta/{{ venta.id_venta }}/" class="btn btn-secondary mt-3">Cancelar</a>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Detalle del Proveedor{% endblock %}
+
+{% block content %}
+<h2>Detalle del Proveedor</h2>
+
+<div class="card p-3">
+
+    <h4>{{ proveedor.nombre_empresa }}</h4>
+
+    <p><strong>Contacto:</strong> {{ proveedor.contacto }}</p>
+    <p><strong>Teléfono:</strong> {{ proveedor.telefono }}</p>
+    <p><strong>Correo:</strong> {{ proveedor.correo }}</p>
+    <p><strong>Dirección:</strong> {{ proveedor.direccion }}</p>
+    <p><strong>Ciudad:</strong> {{ proveedor.ciudad }}</p>
+
+</div>
+
+<a href="/proveedores/" class="btn btn-secondary mt-3">Regresar</a>
+
+{% endblock %}

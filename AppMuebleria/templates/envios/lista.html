@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Envíos{% endblock %}
+
+{% block content %}
+<h2>Envíos</h2>
+
+<a href="/envios/crear/" class="btn btn-primary mb-3">Registrar Envío</a>
+
+<form method="GET" class="mb-3">
+    <input type="text" name="q" class="form-control"
+           placeholder="Buscar..."
+           value="{{ request.GET.q }}">
+</form>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID Envío</th>
+            <th>ID Venta</th>
+            <th>Cliente</th>
+            <th>Empleado</th>
+            <th>Dirección</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for e in envios %}
+        <tr>
+            <td>{{ e.id_envio }}</td>
+            <td>{{ e.venta.id_venta }}</td>
+            <td>{{ e.venta.cliente.nombre }}</td>
+            <td>{{ e.empleado.nombre }}</td>
+            <td>{{ e.direccion_envio }}</td>
+            <td>{{ e.fecha_envio }}</td>
+            <td>{{ e.estado_envio }}</td>
+
+            <td>
+                <a href="/envios/detalle/{{ e.id_envio }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/envios/editar/{{ e.id_envio }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/envios/eliminar/{{ e.id_envio }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

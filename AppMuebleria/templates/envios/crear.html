@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Registrar Envío{% endblock %}
+
+{% block content %}
+<h2>Registrar Envío</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Venta asociada</label>
+    <select name="id_venta" class="form-control" required>
+        <option value="">Seleccione una venta</option>
+        {% for v in ventas %}
+        <option value="{{ v.id_venta }}">
+            Venta #{{ v.id_venta }} — Cliente: {{ v.cliente.nombre }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Empleado asignado</label>
+    <select name="id_empleado" class="form-control" required>
+        <option value="">Seleccione un empleado</option>
+        {% for emp in empleados %}
+        <option value="{{ emp.id_empleado }}">{{ emp.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Dirección de envío</label>
+    <input type="text" name="direccion_envio" class="form-control" required>
+
+    <label>Fecha de envío</label>
+    <input type="date" name="fecha_envio" class="form-control">
+
+    <label>Estado</label>
+    <select name="estado_envio" class="form-control">
+        <option value="Pendiente">Pendiente</option>
+        <option value="En camino">En camino</option>
+        <option value="Entregado">Entregado</option>
+    </select>
+
+    <button class="btn btn-success mt-3">Guardar Envío</button>
+</form>
+
+{% endblock %}

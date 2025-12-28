@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Nueva Categoría{% endblock %}
+
+{% block content %}
+
+<h2>Registrar Categoría</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Nombre</label>
+    <input type="text" name="nombre_categoria" class="form-control" required>
+
+    <label>Descripción</label>
+    <textarea name="descripcion" class="form-control"></textarea>
+
+    <button class="btn btn-success mt-3">Guardar</button>
+</form>
+
+{% endblock %}

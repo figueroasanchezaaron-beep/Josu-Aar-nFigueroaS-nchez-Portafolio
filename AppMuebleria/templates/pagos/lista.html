@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Pagos{% endblock %}
+
+{% block content %}
+<h2>Pagos</h2>
+
+<a href="/pagos/crear/" class="btn btn-primary mb-3">Registrar Pago</a>
+
+<form method="GET" class="mb-3">
+    <input type="text" name="q" class="form-control"
+           placeholder="Buscar..."
+           value="{{ request.GET.q }}">
+</form>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID Pago</th>
+            <th>ID Venta</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Método</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for p in pagos %}
+        <tr>
+            <td>{{ p.id_pago }}</td>
+            <td>{{ p.venta.id_venta }}</td>
+            <td>{{ p.venta.cliente.nombre }}</td>
+            <td>{{ p.fecha_pago }}</td>
+            <td>${{ p.monto }}</td>
+            <td>{{ p.metodo_pago }}</td>
+
+            <td>
+                <a href="/pagos/detalle/{{ p.id_pago }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/pagos/editar/{{ p.id_pago }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/pagos/eliminar/{{ p.id_pago }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Productos{% endblock %}
+
+{% block content %}
+<h2>Productos</h2>
+
+<a href="/productos/crear/" class="btn btn-primary mb-3">Nuevo Producto</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <!-- CAMPO DE BUSQUEDA GENERAL -->
+    <div class="col-md-3">
+        <input type="text" name="q" class="form-control"
+               placeholder="Buscar..."
+               value="{{ request.GET.q }}">
+    </div>
+
+    <!-- FILTROS ESPECÍFICOS (CAMBIA ESTO POR CADA MÓDULO) -->
+    {% block filtros %}
+<div class="col-md-3">
+    <select name="categoria" class="form-select">
+        <option value="">Categoría</option>
+        {% for c in categorias %}
+        <option value="{{ c.id_categoria }}"
+            {% if request.GET.categoria == c.id_categoria|stringformat:"s" %}selected{% endif %}>
+            {{ c.nombre_categoria }}
+        </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="col-md-3">
+    <select name="proveedor" class="form-select">
+        <option value="">Proveedor</option>
+        {% for p in proveedores %}
+        <option value="{{ p.id_proveedor }}"
+            {% if request.GET.proveedor == p.id_proveedor|stringformat:"s" %}selected{% endif %}>
+            {{ p.nombre_empresa }}
+        </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="col-md-3">
+    <input type="number" name="min_precio" class="form-control"
+           placeholder="Precio mínimo" value="{{ request.GET.min_precio }}">
+</div>
+
+<div class="col-md-3">
+    <input type="number" name="max_precio" class="form-control"
+           placeholder="Precio máximo" value="{{ request.GET.max_precio }}">
+</div>
+{% endblock %}
+
+
+    <!-- BOTÓN FILTRAR -->
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
+    <!-- BOTÓN LIMPIAR -->
+    <div class="col-md-3">
+        <a href="{{ request.path }}" class="btn btn-secondary w-100">Limpiar</a>
+    </div>
+
+</form>
+
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th>Proveedor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for p in productos %}
+        <tr>
+            <td>{{ p.id_producto }}</td>
+            <td>{{ p.nombre_producto }}</td>
+            <td>{{ p.descripcion }}</td>
+            <td>${{ p.precio }}</td>
+            <td>{{ p.stock }}</td>
+            <td>{{ p.categoria.nombre_categoria }}</td>
+            <td>{{ p.proveedor.nombre_empresa }}</td>
+
+            <td>
+                <a href="/productos/detalle/{{ p.id_producto }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/productos/editar/{{ p.id_producto }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/productos/eliminar/{{ p.id_producto }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

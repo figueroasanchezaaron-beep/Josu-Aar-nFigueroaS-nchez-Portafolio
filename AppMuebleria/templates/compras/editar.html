@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Editar Compra{% endblock %}
+
+{% block content %}
+<h2>Editar Compra</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Proveedor</label>
+    <select name="id_proveedor" class="form-control" required>
+        {% for p in proveedores %}
+        <option value="{{ p.id_proveedor }}" {% if p.id_proveedor == compra.id_proveedor %}selected{% endif %}>
+            {{ p.nombre_empresa }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Fecha de compra</label>
+    <input type="date" name="fecha_compra" class="form-control" value="{{ compra.fecha_compra }}" required>
+
+    <label>Total</label>
+    <input type="number" step="0.01" name="total" class="form-control" value="{{ compra.total }}" required>
+
+    <button class="btn btn-primary mt-3">Actualizar</button>
+</form>
+
+{% endblock %}

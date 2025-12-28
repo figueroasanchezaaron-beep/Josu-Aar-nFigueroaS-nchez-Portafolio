@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Cliente{% endblock %}
+
+{% block content %}
+<h2>Registrar Cliente</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Nombre</label>
+    <input type="text" name="nombre" class="form-control" required>
+
+    <label>Dirección</label>
+    <input type="text" name="direccion" class="form-control">
+
+    <label>Teléfono</label>
+    <input type="text" name="telefono" class="form-control">
+
+    <label>Correo</label>
+    <input type="email" name="correo" class="form-control">
+
+    <label>Ciudad</label>
+    <input type="text" name="ciudad" class="form-control">
+
+    <button class="btn btn-success mt-3">Guardar</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Empleados{% endblock %}
+
+{% block content %}
+<h2>Empleados</h2>
+
+<a href="/empleados/crear/" class="btn btn-primary mb-3">Nuevo Empleado</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <!-- CAMPO DE BUSQUEDA GENERAL -->
+    <div class="col-md-3">
+        <input type="text" name="q" class="form-control"
+               placeholder="Buscar..."
+               value="{{ request.GET.q }}">
+    </div>
+
+    <!-- FILTROS ESPECÍFICOS (CAMBIA ESTO POR CADA MÓDULO) -->
+    {% block filtros %}
+<div class="col-md-3">
+    <input type="text" name="puesto" class="form-control"
+           placeholder="Puesto" value="{{ request.GET.puesto }}">
+</div>
+{% endblock %}
+
+
+
+    <!-- BOTÓN FILTRAR -->
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
+    <!-- BOTÓN LIMPIAR -->
+    <div class="col-md-3">
+        <a href="{{ request.path }}" class="btn btn-secondary w-100">Limpiar</a>
+    </div>
+
+</form>
+
+
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Fecha de Contratación</th>
+            <th>Salario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for e in empleados %}
+        <tr>
+            <td>{{ e.id_empleado }}</td>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.puesto }}</td>
+            <td>{{ e.telefono }}</td>
+            <td>{{ e.direccion }}</td>
+            <td>{{ e.fecha_contratacion }}</td>
+            <td>${{ e.salario }}</td>
+
+            <td>
+                <a href="/empleados/detalle/{{ e.id_empleado }}/" class="btn btn-info btn-sm">Ver</a>
+                <a href="/empleados/editar/{{ e.id_empleado }}/" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/empleados/eliminar/{{ e.id_empleado }}/" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

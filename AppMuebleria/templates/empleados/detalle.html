@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Detalle del Empleado{% endblock %}
+
+{% block content %}
+<h2>Detalle del Empleado</h2>
+
+<div class="card p-3">
+
+    <h4>{{ empleado.nombre }}</h4>
+
+    <p><strong>Puesto:</strong> {{ empleado.puesto }}</p>
+    <p><strong>Teléfono:</strong> {{ empleado.telefono }}</p>
+    <p><strong>Dirección:</strong> {{ empleado.direccion }}</p>
+    <p><strong>Fecha de contratación:</strong> {{ empleado.fecha_contratacion }}</p>
+    <p><strong>Salario:</strong> ${{ empleado.salario }}</p>
+
+</div>
+
+<a href="/empleados/" class="btn btn-secondary mt-3">Regresar</a>
+
+{% endblock %}

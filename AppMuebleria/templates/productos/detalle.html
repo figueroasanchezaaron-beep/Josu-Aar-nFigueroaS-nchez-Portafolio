@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Detalle del Producto{% endblock %}
+
+{% block content %}
+<h2>Detalle del Producto</h2>
+
+<div class="card p-3">
+
+    <h4>{{ producto.nombre_producto }}</h4>
+    <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+    <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+    <p><strong>Stock disponible:</strong> {{ producto.stock }}</p>
+
+    <p><strong>Categoría:</strong> {{ producto.categoria.nombre_categoria }}</p>
+    <p><strong>Proveedor:</strong> {{ producto.proveedor.nombre_empresa }}</p>
+
+</div>
+
+<a href="/productos/" class="btn btn-secondary mt-3">Regresar</a>
+
+{% endblock %}

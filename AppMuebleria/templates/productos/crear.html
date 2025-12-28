@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Nuevo Producto{% endblock %}
+
+{% block content %}
+<h2>Registrar Producto</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Nombre del producto</label>
+    <input type="text" name="nombre_producto" class="form-control" required>
+
+    <label>Descripción</label>
+    <input type="text" name="descripcion" class="form-control">
+
+    <label>Precio</label>
+    <input type="number" step="0.01" name="precio" class="form-control" required>
+
+    <label>Stock</label>
+    <input type="number" name="stock" class="form-control" required>
+
+    <label>Categoría</label>
+    <select name="id_categoria" class="form-control" required>
+        <option value="">Seleccione una categoría</option>
+        {% for c in categorias %}
+        <option value="{{ c.id_categoria }}">{{ c.nombre_categoria }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Proveedor</label>
+    <select name="id_proveedor" class="form-control" required>
+        <option value="">Seleccione un proveedor</option>
+        {% for pr in proveedores %}
+        <option value="{{ pr.id_proveedor }}">{{ pr.nombre_empresa }}</option>
+        {% endfor %}
+    </select>
+
+    <button class="btn btn-success mt-3">Guardar</button>
+</form>
+
+{% endblock %}

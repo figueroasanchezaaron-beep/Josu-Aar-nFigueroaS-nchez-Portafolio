@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Detalle de la Venta{% endblock %}
+
+{% block content %}
+<h2>Detalle de la Venta</h2>
+
+<div class="card p-3">
+
+    <p><strong>ID Venta:</strong> {{ venta.id_venta }}</p>
+    <p><strong>Cliente:</strong> {{ venta.cliente.nombre }}</p>
+    <p><strong>Empleado:</strong> {{ venta.empleado.nombre }}</p>
+    <p><strong>Fecha:</strong> {{ venta.fecha_venta }}</p>
+    <p><strong>Total:</strong> ${{ venta.total }}</p>
+
+</div>
+
+<h3 class="mt-4">Productos vendidos</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for d in detalles %}
+        <tr>
+            <td>{{ d.producto.nombre_producto }}</td>
+            <td>{{ d.cantidad }}</td>
+            <td>${{ d.precio_unitario }}</td>
+            <td>${{ d.subtotal }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/ventas/" class="btn btn-secondary mt-3">Regresar</a>
+
+{% endblock %}

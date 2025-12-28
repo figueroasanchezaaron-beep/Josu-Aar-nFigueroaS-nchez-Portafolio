@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Editar Envío{% endblock %}
+
+{% block content %}
+<h2>Editar Envío</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <label>Venta asociada</label>
+    <select name="id_venta" class="form-control" required>
+        {% for v in ventas %}
+        <option value="{{ v.id_venta }}" {% if v.id_venta == envio.id_venta %}selected{% endif %}>
+            Venta #{{ v.id_venta }} — Cliente: {{ v.cliente.nombre }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Empleado asignado</label>
+    <select name="id_empleado" class="form-control" required>
+        {% for emp in empleados %}
+        <option value="{{ emp.id_empleado }}" {% if emp.id_empleado == envio.id_empleado %}selected{% endif %}>
+            {{ emp.nombre }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>Dirección de envío</label>
+    <input type="text" name="direccion_envio" class="form-control" value="{{ envio.direccion_envio }}" required>
+
+    <label>Fecha de envío</label>
+    <input type="date" name="fecha_envio" class="form-control" value="{{ envio.fecha_envio }}">
+
+    <label>Estado</label>
+    <select name="estado_envio" class="form-control">
+        <option value="Pendiente" {% if envio.estado_envio == "Pendiente" %}selected{% endif %}>Pendiente</option>
+        <option value="En camino" {% if envio.estado_envio == "En camino" %}selected{% endif %}>En camino</option>
+        <option value="Entregado" {% if envio.estado_envio == "Entregado" %}selected{% endif %}>Entregado</option>
+    </select>
+
+    <button class="btn btn-primary mt-3">Actualizar</button>
+</form>
+
+{% endblock %}
